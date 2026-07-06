@@ -1,7 +1,7 @@
 import numpy as np
 
 # Parameter
-anzahl = 1000
+anzahl = 100
 mittelwert = 0
 standardabweichung = 1
 

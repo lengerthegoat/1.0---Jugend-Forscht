@@ -3,5 +3,7 @@ import matplotlib.pyplot as plt
 
 data = np.loadtxt("data.txt")
 
-plt.hist(data, bins=30)
+print(data)
+
+plt.hist(data, bins=100)
 plt.show()
