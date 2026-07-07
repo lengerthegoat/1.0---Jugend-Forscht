@@ -1,15 +1,15 @@
 import numpy as np
 
 # Parameter
-anzahl = 100
-mittelwert = 0
-standardabweichung = 1
+anzahl = 1000
+mittelwert = 2
+standardabweichung = 0.5
 
 # Reine Normalverteilung erzeugen
 daten = np.random.normal(mittelwert, standardabweichung, anzahl)
 
 # Speichern als TXT
-with open("data.txt", "w") as datei:
+with open("data2.txt", "w") as datei:
     for wert in daten:
         datei.write(f"{wert:.5f}\n")
 
