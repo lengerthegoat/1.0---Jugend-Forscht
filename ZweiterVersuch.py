@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-data = np.loadtxt("data.txt")
-mu1 = np.mean(data)
-sigma1 = np.std(data)
+data1 = np.loadtxt("data.txt")
+mu1 = np.mean(data1)
+sigma1 = np.std(data1)
 print("Mean and standard divietion data1")
 print(str(mu1) + " " + str(sigma1))
 
@@ -15,7 +15,7 @@ print("Mean and standard divietion data2")
 print(str(mu2) + " " + str(sigma2))
 
 
-data = np.stack([data, data2])
+data = np.stack([data1, data2])
 
 
 
