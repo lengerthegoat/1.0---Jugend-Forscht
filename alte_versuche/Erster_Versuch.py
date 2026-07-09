@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 data_1 = []
 
-with open("data.txt") as f:
+with open("../data.txt") as f:
   
   for x in f:
     number  = x

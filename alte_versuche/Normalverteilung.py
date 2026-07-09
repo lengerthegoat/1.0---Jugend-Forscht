@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
-data = np.loadtxt("data.txt")
+data = np.loadtxt("../data.txt")
 
 
 plt.hist(data, bins=30, density=True, alpha=0.5)

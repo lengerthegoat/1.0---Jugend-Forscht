@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = np.loadtxt("data.txt")
+data = np.loadtxt("../data.txt")
 
 print(data)
 
