@@ -47,26 +47,100 @@ def lade_als_array(experiment):
 SEITE = """
 <!doctype html>
 <html lang="de">
-<head><meta charset="utf-8"><title>Messwerte</title></head>
-<body style="font-family: sans-serif; max-width: 700px; margin: 2rem auto;">
-    <h1>Messwerte eintragen</h1>
-    <form method="post" action="/hinzufuegen">
-        <label>Experiment: <input type="text" name="experiment" value="{{ letztes_experiment }}" required></label><br><br>
-        <label>Wert: <input type="number" step="any" name="wert" required></label><br><br>
-        <button type="submit">Hinzufügen</button>
-    </form>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Messwerte</title>
+<style>
+    :root {
+        --akzent: #4f6df5;
+        --hintergrund: #f4f6fb;
+        --karte: #ffffff;
+        --text: #1f2430;
+        --text-schwach: #6b7280;
+        --rand: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: var(--hintergrund);
+        color: var(--text);
+        max-width: 720px;
+        margin: 2.5rem auto;
+        padding: 0 1rem;
+    }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.15rem; color: var(--text-schwach); margin-top: 2.5rem; }
+    .karte {
+        background: var(--karte);
+        border: 1px solid var(--rand);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+    form { display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; }
+    .feld { display: flex; flex-direction: column; gap: 0.35rem; flex: 1; min-width: 160px; }
+    label { font-size: 0.85rem; color: var(--text-schwach); }
+    input {
+        padding: 0.55rem 0.7rem;
+        border: 1px solid var(--rand);
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+    input:focus { outline: 2px solid var(--akzent); border-color: transparent; }
+    button {
+        background: var(--akzent);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.6rem 1.3rem;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    button:hover { opacity: 0.9; }
+    table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+    th, td { text-align: left; padding: 0.6rem 0.7rem; font-size: 0.95rem; }
+    th { color: var(--text-schwach); font-weight: 600; border-bottom: 2px solid var(--rand); }
+    tr:not(:last-child) td { border-bottom: 1px solid var(--rand); }
+    tr:hover td { background: #f9fafc; }
+    .leer { color: var(--text-schwach); font-style: italic; padding: 1rem 0; }
+</style>
+</head>
+<body>
+    <h1>Messwerte</h1>
+    <p style="color: var(--text-schwach); margin-top: 0;">Neue Messung eintragen und die letzten Einträge einsehen.</p>
+
+    <div class="karte">
+        <form method="post" action="/hinzufuegen">
+            <div class="feld">
+                <label for="experiment">Experiment</label>
+                <input type="text" id="experiment" name="experiment" value="{{ letztes_experiment }}" required>
+            </div>
+            <div class="feld">
+                <label for="wert">Wert</label>
+                <input type="number" id="wert" step="any" name="wert" required>
+            </div>
+            <button type="submit">Hinzufügen</button>
+        </form>
+    </div>
 
     <h2>Letzte Einträge</h2>
-    <table border="1" cellpadding="6" style="border-collapse: collapse;">
-        <tr><th>ID</th><th>Experiment</th><th>Wert</th></tr>
-        {% for row in eintraege %}
-        <tr>
-            <td>{{ row["id"] }}</td>
-            <td>{{ row["experiment"] }}</td>
-            <td>{{ row["wert"] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="karte">
+        {% if eintraege %}
+        <table>
+            <tr><th>ID</th><th>Experiment</th><th>Wert</th></tr>
+            {% for row in eintraege %}
+            <tr>
+                <td>{{ row["id"] }}</td>
+                <td>{{ row["experiment"] }}</td>
+                <td>{{ row["wert"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p class="leer">Noch keine Messwerte eingetragen.</p>
+        {% endif %}
+    </div>
 </body>
 </html>
 """

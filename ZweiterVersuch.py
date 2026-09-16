@@ -34,6 +34,7 @@ def zeige_histogramme():
 
 print("Kovarianzmatrix:")
 print(np.round(np.cov(data), 3))
+kovarianzmatrix = np.cov(data)
 
 
 def erstellemodell3D():
